@@ -3,10 +3,10 @@ package org.epita.game;
 import org.epita.anomalie.NotAValidPileException;
 
 public class Table {
-    private Pile pileAsc1;
-    private Pile pileAsc2;
-    private Pile pileDsc1;
-    private Pile pileDsc2;
+    private Pile pileAsc1 = new Pile();
+    private Pile pileAsc2 = new Pile();
+    private Pile pileDsc1 = new Pile();
+    private Pile pileDsc2 = new Pile();
     private Player joueurCourant;
 
     public void initPiles() {
@@ -18,13 +18,13 @@ public class Table {
 
     public void afficherTable(Player joueurCourant) {
         System.out.println("Piles ascendantes : "+pileAsc1.carteSurPile().toString()+pileAsc2.carteSurPile().toString());
-        System.out.println("Piles descendantes : "+pileDsc1.carteSurPile().toString()+pileDsc2.carteSurPile().toString()+"\n");
+        System.out.println("Piles descendantes : "+pileDsc1.carteSurPile().toString()+pileDsc2.carteSurPile().toString());
         joueurCourant.getUneMain().afficheMain();
     }
 
-    public void carteSurPile(int pile,Carte carte) {
+    public void carteSurPile(int pile,Carte carte) throws NotAValidPileException {
         if (pile < 1 || pile > 4) {
-            throw new NotAValidPileException("cette Pile n'existe pas !")
+            throw new NotAValidPileException("cette Pile n'existe pas !");
         }
         if (pile == 1) {
             pileAsc1.ajouterCarteSurPile(carte);

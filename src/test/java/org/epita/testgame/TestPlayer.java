@@ -16,8 +16,9 @@ public class TestPlayer {
     public void test_creer_joueur() {
         Deck deck = new Deck();
         deck.initDeck();
-        Player joueur = new Player();
-        joueur.creerJoueur("Laurent",deck);
+        UneMain mainJoueur = new UneMain();
+        mainJoueur.genererMain(deck);
+        Player joueur = new Player("Laurent",deck);
         assertThat(joueur.getNom()).isEqualTo("Laurent");
     }
 }

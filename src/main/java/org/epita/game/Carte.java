@@ -13,8 +13,7 @@ public class Carte {
         this.valeur = valeur;
     }
 
-    public Carte getCarte(int valeur) {
-        this.carte = new Carte(valeur);
+    public Carte getCarte() {
         return this.carte;
     }
 
