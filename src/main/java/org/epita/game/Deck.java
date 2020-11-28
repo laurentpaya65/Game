@@ -11,7 +11,7 @@ public class Deck {
     private Deque<Carte> pioche = new ArrayDeque<>();
     private boolean deckVide = false;
 
-    public void init() {
+    public void initDeck() {
         for (int i = DEBUT_PILE_INITIALE; i < DEBUT_PILE_INITIALE + TAILLE_PILE_INITIALE ; i++) {
             pioche.add(new Carte(i));
         }
@@ -59,5 +59,9 @@ public class Deck {
             return "[[[" + pioche.size() + "]";
         }
         return "[[[0" + pioche.size() + "]";
+    }
+
+    public Deque<Carte> getPioche() {
+        return pioche;
     }
 }

@@ -1,16 +1,17 @@
 package org.epita.game;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Player {
-    String nom;
+    private String nom;
+    private UneMain uneMain = new UneMain();
 
-     public void acquerirNom() {
-        System.out.println("Veuillez entrer votre nom :\n");
-        Scanner sc = new Scanner(System.in);
-        nom = sc.next(); //C'est cette instruction qui laisse la main à l'utilisateur
+    public void jouerCarte(int valeur) throws Exception {
+         uneMain.rechercherCarte(valeur);
+         uneMain.enleverCarte(valeur);
     }
-
     @Override
     public String toString() {
         return nom;
@@ -18,5 +19,14 @@ public class Player {
 
     public String getNom() {
         return nom;
+    }
+
+    public UneMain getUneMain() {
+        return uneMain;
+    }
+
+    public void creerJoueur(String nom,Deck deck) {
+         this.nom = nom;
+         uneMain.genererMain(deck);
     }
 }
