@@ -7,12 +7,15 @@ import org.epita.anomalie.UnavailableCardException;
 import java.util.*;
 
 public class Game {
+    // faire saisir TAILLE PILE et adapter la TAILLE MAIN en conséquence
+    // limiter le nombre d joueur
+    // mettre regex FIN en variable en acceptant FIN ou blanc ou espace
     private Deck deck = new Deck();
     private List<Player> joueurs = new LinkedList<>();
     private Table table = new Table();
     private int joueurCourant = 0;
     private boolean deckVide = false;
-    private int carte;
+    private Carte carte;
     private int pileCourante;
     private String nom = "";
     private String reponse = "";
@@ -70,7 +73,8 @@ public class Game {
         while (!nom.matches("FIN") ) {
             acquerirNom();
             if (!nom.matches("FIN")) {
-                joueurs.add(new Player(nom, deck));
+                mainJoueur.genererMain(deck);
+                joueurs.add(new Player(nom, mainJoueur));
             }
         }
     }
@@ -102,21 +106,21 @@ public class Game {
     public boolean acquerirCartePile() {
         reponse = "";
         while (!reponse.matches("[0-9](1,2)?|FIN")) {
-            System.out.println("Veuillez entrer une carte ou FIN :\n");
+            System.out.println("Veuillez entrer une carte (un nombre) ou FIN :\n");
             Scanner sc = new Scanner(System.in);
             reponse = sc.next(); //C'est cette instruction qui laisse la main à l'utilisateur
         }
         if (reponse.matches("FIN")) {
             return false;
         } else {
-            carte = Integer.parseInt(reponse);
+            carte = new Carte(Integer.parseInt(reponse));
             return acquerirPile();
         }
     }
     public boolean acquerirPile() {
         reponse = "";
         while (!reponse.matches("[1-4](1)?")) {
-            System.out.println("Veuillez entrer une pile :\n");
+            System.out.println("Veuillez entrer une pile (de 1 à 4) :\n");
             Scanner sc = new Scanner(System.in);
             reponse = sc.next(); //C'est cette instruction qui laisse la main à l'utilisateur
         }
@@ -133,9 +137,9 @@ public class Game {
         Scanner sc = new Scanner(System.in);
         nom = sc.next(); //C'est cette instruction qui laisse la main à l'utilisateur
     }
-    public void jouerCarte(int valeur) throws NotAValidPlayException , NotAValidPileException , UnavailableCardException {
-        joueurs.get(joueurCourant).jouerCarte(valeur);
-        table.carteSurPile(pileCourante,new Carte(valeur).getCarte());
+    public void jouerCarte(Carte carte) throws NotAValidPlayException , NotAValidPileException , UnavailableCardException {
+        joueurs.get(joueurCourant).jouerCarte(carte);
+        table.carteSurPile(pileCourante,carte);
         nbCarteJoue = nbCarteJoue + 1;
         finTour = true;
     }

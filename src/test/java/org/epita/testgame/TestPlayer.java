@@ -18,7 +18,7 @@ public class TestPlayer {
         deck.initDeck();
         UneMain mainJoueur = new UneMain();
         mainJoueur.genererMain(deck);
-        Player joueur = new Player("Laurent",deck);
+        Player joueur = new Player("Laurent",mainJoueur);
         assertThat(joueur.getNom()).isEqualTo("Laurent");
     }
 }

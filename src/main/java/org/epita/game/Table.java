@@ -17,8 +17,8 @@ public class Table {
     }
 
     public void afficherTable(Player joueurCourant) {
-        System.out.println("Piles ascendantes : "+pileAsc1.carteSurPile().toString()+pileAsc2.carteSurPile().toString());
-        System.out.println("Piles descendantes : "+pileDsc1.carteSurPile().toString()+pileDsc2.carteSurPile().toString());
+        System.out.println("Piles ascendantes  1-2 : "+pileAsc1.carteSurPile().toString()+pileAsc2.carteSurPile().toString());
+        System.out.println("Piles descendantes 3-4 : "+pileDsc1.carteSurPile().toString()+pileDsc2.carteSurPile().toString());
         joueurCourant.getUneMain().afficheMain();
     }
 

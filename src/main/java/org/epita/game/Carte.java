@@ -13,10 +13,6 @@ public class Carte {
         this.valeur = valeur;
     }
 
-    public Carte getCarte() {
-        return this.carte;
-    }
-
     public int getValeur() {
         return valeur;
     }

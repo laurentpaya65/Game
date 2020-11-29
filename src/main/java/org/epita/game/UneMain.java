@@ -22,16 +22,16 @@ public class UneMain {
         return uneMain;
     }
 
-    public boolean rechercherCarte(int valeur) throws  UnavailableCardException {
-        if (!uneMain.containsKey(valeur)) {
+    public boolean rechercherCarte(Carte carte) throws  UnavailableCardException {
+        if (!uneMain.containsKey(carte.getValeur())) {
            throw new UnavailableCardException("Carte non présente en main, rejouez");
         }
         return true;
     }
 
-    public void enleverCarte(int valeur) throws UnavailableCardException {
-        if (uneMain.containsKey(valeur)) {
-            uneMain.remove(valeur);
+    public void enleverCarte(Carte carte) throws UnavailableCardException {
+        if (uneMain.containsKey(carte.getValeur())) {
+            uneMain.remove(carte.getValeur());
         } else {
             throw new UnavailableCardException("Carte non présente en main, rejouez");
         }

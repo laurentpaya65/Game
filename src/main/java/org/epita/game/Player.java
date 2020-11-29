@@ -11,14 +11,14 @@ public class Player {
     private String nom;
     private UneMain uneMain = new UneMain();
 
-    public Player(String nom, Deck deck) {
+    public Player(String nom, UneMain uneMain) {
         this.nom = nom;
-        uneMain.genererMain(deck);
+        this.uneMain = uneMain;
     }
 
-    public void jouerCarte(int valeur) throws UnavailableCardException {
-         uneMain.rechercherCarte(valeur);
-         uneMain.enleverCarte(valeur);
+    public void jouerCarte(Carte carte) throws UnavailableCardException {
+         uneMain.rechercherCarte(carte);
+         uneMain.enleverCarte(carte);
     }
     @Override
     public String toString() {

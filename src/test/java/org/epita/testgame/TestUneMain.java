@@ -26,7 +26,7 @@ public class TestUneMain {
         uneMain.genererMain(deck);
         Map<Integer,Carte> carteMain = uneMain.getMain();
         for (Map.Entry<Integer,Carte> carte : carteMain.entrySet()){
-            assertThat(uneMain.rechercherCarte(carte.getKey())).isTrue();
+            assertThat(uneMain.rechercherCarte(carte.getValue())).isTrue();
 //            Throwable thrown = catchThrowable(() -> {uneMain.rechercherCarte(carte.getKey());});
 //            assertThat(thrown).isNotInstanceOf(UnavailableCardException.class);
         }
@@ -40,11 +40,11 @@ public class TestUneMain {
         Map<Integer,Carte> carteMain = new HashMap<>(uneMain.getMain());
         for (Map.Entry<Integer,Carte> carte : carteMain.entrySet()) {
 //            System.out.println(carte);
-            uneMain.enleverCarte(carte.getKey());
+            uneMain.enleverCarte(carte.getValue());
         }
         for (Map.Entry<Integer,Carte> carte : carteMain.entrySet()) {
 //            System.out.println(carte);
-            Throwable thrown = catchThrowable(() -> {uneMain.rechercherCarte(carte.getKey());});
+            Throwable thrown = catchThrowable(() -> {uneMain.rechercherCarte(carte.getValue());});
             assertThat(thrown).isInstanceOf(UnavailableCardException.class);
         }
     }
